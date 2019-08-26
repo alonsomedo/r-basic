@@ -1,0 +1,44 @@
+---
+title: "Est.Descriptiva"
+author: "JAMD"
+date: "25 de agosto de 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Datos multidimensionales
+
+## Ejemplo con tres dimensiones
+
+```{r}
+ans = sample(c("si","no"),size=100,rep=TRUE)
+sex = sample(c("H","M"),size = 100, rep = TRUE)
+place = sample(c("San Francisco","Barcelona","Valencia","Cobija", "Asturias"),size=100,rep=TRUE)
+
+
+table(sex,ans,place)
+
+ftable(sex,ans,place)
+ftable(sex,ans,place, col.vars=c("sex","ans"))
+
+```
+
+
+### Filtrar las tablas
+```{r}
+table(sex,ans,place)["M","si","San Francisco"]
+table(sex,ans,place)[,"si","Valencia"]
+table(sex,ans,place)["M",,"San Francisco"]
+
+```
+
+### Frecuencias Relativas
+```{r}
+prop.table(table(sex,ans,place)) #Frec. Relativas Globales
+prop.table(table(sex,ans,place),margin=3) #Frec. Relativa Marginal por pais
+prop.table(table(sex,ans,place),margin=c(1,3)) #Frec. Relativa Marginal por sexo y pais
+```
+

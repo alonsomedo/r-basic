@@ -1,0 +1,43 @@
+---
+title: "DataFrame"
+author: "JAMD"
+date: "24 de agosto de 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Data Frame Iris
+```{r cars}
+df = iris
+head(df,5)
+tail(df,5)
+str(df)
+names(df) #colnames
+rownames(df)
+dimnames(df)
+dim(df)
+
+```
+
+
+```{r}
+
+dfMedals <- read.table(file="http://winterolympicsmedals.com/medals.csv",
+                 header=TRUE,
+                 sep = ",",
+                 stringsAsFactors = TRUE)
+
+str(dfMedals)
+
+df6 <- subset(dfMedals, Year >= 1960 & Year <= 1996 & Medal == "Gold")
+#df6
+aggregate(Medal ~ Year, df6, function(x) length((x)))
+
+
+
+
+```
+

@@ -1,0 +1,150 @@
+---
+title: "Graficos"
+author: "JAMD"
+date: "18 de agosto de 2019"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Gráficos con la funcion `plot`
+
+
+```{r primer_plot, fig.cap="Gráfico básico explicando el uso de plot",fig.align='center'}
+x = c(2,6,4,9,-1)
+y = c(1,8,4,-2,4)
+plot(x,y)
+```
+
+Si no incorporamos vector `Y`, `R`nos va tomar el parametro `X` como si fuese el vector de datos `Y`: `plot(1:n,x)`
+
+```{r}
+plot(2^(1:6))
+```
+
+Si queremos representar una función $f(x)$:
+
+```{r}
+f <- function(x){sqrt((x))}
+plot(f)
+```
+
+##Parámetros
+
+```{r}
+n = 1:20
+fib = (1/sqrt(5))*((1+sqrt(5))/2)^n - (1/sqrt(5))*((1-sqrt(5))/2)^n
+fib
+par(mfrow=c(1,2))
+plot(x = n, y=fib, xlab = "eje X", ylab="eje Y", 
+      main= "Sucesión de Fibonacci", col="powderblue")
+plot(x = n, y=fib, xlab = "eje X", ylab="eje Y", 
+      main= "Sucesión de Fibonacci", col="powderblue")
+par(mfrow=c(1,1))
+```
+
+### h:histograma , n:none, o:lineas unen puntos
+```{r}
+plot(n, fib, pch=21, col = "red", bg= "yellow", cex=3,
+     main="Fibonacci",
+     type="o", xlim=c(1,10), ylim=c(1,100),
+     xaxp = c(0,10,4), yaxp = c(0,100,10))
+```
+
+## Como añadir elementos a un gráfico
+```{r}
+f <- function(x){
+  x^2-2*x+sqrt(abs(x))
+}
+plot(f, xlim=c(-3,3))
+points(0,0,pch=19)
+points(-3:3,(-3:3)^2,col="blue")
+abline(2,3,lty="dashed",col="red")
+abline(v=2,lty="dotted",col="green")
+abline(h=5, lty="dotdash",col ="gray")
+```
+
+```{r}
+f <- function(x){
+  x^2
+}
+plot(f, xlim=c(-3,3), col="red",lwd=2,ylab=expression(y^2),xlab="x")
+abline(h=0:9,v=-3:3,lty="dotted",col="blue")
+```
+
+```{r}
+
+plot(tan,xlim=c(-pi,pi),ylim=c(-5,5))
+abline(v=c(-pi/2,pi/2),col="red")
+```
+
+```{r}
+plot(0,0)
+text(0,0,labels = "debajo",pos=1)
+text(0,0,labels = "izquierda",pos=2)
+text(0,0,labels = "arriba",pos=3)
+text(0,0,labels = "derecha",pos=4)
+text(0,0,labels = "centro")
+```
+
+```{r}
+f <- function(x){
+  x^2
+}
+plot(f, xlim=c(-3,3), col="red",lwd=2,ylab=expression(y^2),xlab="x")
+points(-3:3,f(-3:3),pch=19)
+lines(-3:3,f(-3:3),lwd=2,lty="dotted")
+curve(x^3,lty="dashed",col="purple",add=TRUE)
+legend("bottomright",
+       legend=c(expression(x^2),"lines x^2",expression(x^3)),
+       col=c("red","black","purple"),
+       lty=c("dotted","dashed","dashed"))
+```
+
+```{r}
+curve(x^2-3*x+30,-15,15,main="Una parabola", xlab = expression(x),ylab = expression(y=x^2-3*x+30))
+
+```
+
+```{r}
+f <- function(x){
+  x^2-3*x+30
+}
+curve(f, 
+     xlim=c(-15,15),
+     main = "Una parábola",
+     col="red",
+     lwd=2,
+     ylab=expression(y=x^2−3*x+30),
+     xlab=expression(x))
+
+```
+
+```{r}
+f <- function(x){
+  x*3
+}
+curve(f, 
+     xlim=c(-10,20),
+     main = "2 rectas",
+     sub = "Dos rectas con pendiente opuesto",
+     col="blue"
+    )
+
+curve(-3*x,
+      col="green",
+      add=TRUE
+      )
+abline(h = 0, col="red")
+legend(13,
+       10,
+       legend=c("3x","-3x"),
+       col=c("blue","green"),
+       lty=c(1,1)
+       )
+
+```

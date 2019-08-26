@@ -1,0 +1,76 @@
+---
+title: "Est.Descriptiva"
+author: "JAMD"
+date: "25 de agosto de 2019"
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+x <- sample(x = 1:5,size=12,replace = TRUE)
+table(x)
+names(which(table(x)==1))
+names(which(table(x)==4))
+```
+
+
+```{r}
+respuestas = factor(sample(c("si","no"),size=12,replace=TRUE))
+respuestas
+
+table(respuestas)
+prop.table(table(respuestas))
+
+names(which(table(respuestas)==max(table(respuestas))))
+```
+
+```{r}
+sexo = c(rep("H",6),rep("M",14))
+table(sexo)
+prop.table(table(sexo))
+
+
+moda <- function(d){
+  names(which(table(d)==max(table(d))))
+}
+m_t = moda(sexo)
+```
+
+La moda del data frame es `r m_t`
+
+
+```{r}
+sex = sample(c("H","M"), size= length(respuestas), replace= TRUE)
+table(sex,respuestas)
+prop.table(table(sex,respuestas))*100
+prop.table(table(sex,respuestas),margin=1) #Frecuencia relativa por fila (Sexo)
+prop.table(table(sex,respuestas),margin=2) #Frecuencia relativa por columna (respuesta)
+```
+
+#Paquete `gmodels`
+```{r}
+library(gmodels)
+sex2 = factor(c("H","M","M","M","H","H","M","M"))
+ans =  factor(c("S","N","S","S","S","N","N","S"))
+CrossTable(sex2,ans,prop.chisq = FALSE)
+```
+
+```{r}
+tt <- table(sex2,ans)
+tt
+prop.table(tt) #Frec. Rel Global
+prop.table(tt,margin=1) #Frec Rel. Por sexo
+prop.table(tt,margin=2) #Frec Rel. Por respuesta
+
+colSums(tt)
+rowSums(tt)
+colSums(prop.table(tt))
+rowSums(prop.table(tt))
+
+apply(tt,FUN=sum,MARGIN=1)
+```
+
