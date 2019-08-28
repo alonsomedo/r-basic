@@ -194,26 +194,26 @@ $(document).ready(function () {
 <pre class="r"><code>x &lt;- sample(x = 1:5,size=12,replace = TRUE)
 table(x)</code></pre>
 <pre><code>## x
-## 1 3 4 5 
-## 1 4 5 2</code></pre>
+## 1 2 3 4 5 
+## 3 1 1 3 4</code></pre>
 <pre class="r"><code>names(which(table(x)==1))</code></pre>
-<pre><code>## [1] &quot;1&quot;</code></pre>
+<pre><code>## [1] &quot;2&quot; &quot;3&quot;</code></pre>
 <pre class="r"><code>names(which(table(x)==4))</code></pre>
-<pre><code>## [1] &quot;3&quot;</code></pre>
+<pre><code>## [1] &quot;5&quot;</code></pre>
 <pre class="r"><code>respuestas = factor(sample(c(&quot;si&quot;,&quot;no&quot;),size=12,replace=TRUE))
 respuestas</code></pre>
-<pre><code>##  [1] no si si no si si si no si no no no
+<pre><code>##  [1] si si si si si si no si si no no si
 ## Levels: no si</code></pre>
 <pre class="r"><code>table(respuestas)</code></pre>
 <pre><code>## respuestas
 ## no si 
-##  6  6</code></pre>
+##  3  9</code></pre>
 <pre class="r"><code>prop.table(table(respuestas))</code></pre>
 <pre><code>## respuestas
-##  no  si 
-## 0.5 0.5</code></pre>
+##   no   si 
+## 0.25 0.75</code></pre>
 <pre class="r"><code>names(which(table(respuestas)==max(table(respuestas))))</code></pre>
-<pre><code>## [1] &quot;no&quot; &quot;si&quot;</code></pre>
+<pre><code>## [1] &quot;si&quot;</code></pre>
 <pre class="r"><code>sexo = c(rep(&quot;H&quot;,6),rep(&quot;M&quot;,14))
 table(sexo)</code></pre>
 <pre><code>## sexo
@@ -232,23 +232,23 @@ m_t = moda(sexo)</code></pre>
 table(sex,respuestas)</code></pre>
 <pre><code>##    respuestas
 ## sex no si
-##   H  3  2
-##   M  3  4</code></pre>
+##   H  1  3
+##   M  2  6</code></pre>
 <pre class="r"><code>prop.table(table(sex,respuestas))*100</code></pre>
 <pre><code>##    respuestas
-## sex       no       si
-##   H 25.00000 16.66667
-##   M 25.00000 33.33333</code></pre>
+## sex        no        si
+##   H  8.333333 25.000000
+##   M 16.666667 50.000000</code></pre>
 <pre class="r"><code>prop.table(table(sex,respuestas),margin=1) #Frecuencia relativa por fila (Sexo)</code></pre>
 <pre><code>##    respuestas
-## sex        no        si
-##   H 0.6000000 0.4000000
-##   M 0.4285714 0.5714286</code></pre>
+## sex   no   si
+##   H 0.25 0.75
+##   M 0.25 0.75</code></pre>
 <pre class="r"><code>prop.table(table(sex,respuestas),margin=2) #Frecuencia relativa por columna (respuesta)</code></pre>
 <pre><code>##    respuestas
 ## sex        no        si
-##   H 0.5000000 0.3333333
-##   M 0.5000000 0.6666667</code></pre>
+##   H 0.3333333 0.3333333
+##   M 0.6666667 0.6666667</code></pre>
 <div id="paquete-gmodels" class="section level1">
 <h1>Paquete <code>gmodels</code></h1>
 <pre class="r"><code>library(gmodels)</code></pre>

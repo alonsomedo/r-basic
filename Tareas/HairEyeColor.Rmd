@@ -1,0 +1,133 @@
+---
+title: "HairEyeColor"
+author: "JAMD"
+date: "27 de agosto de 2019"
+output: html_document
+---
+
+
+#Ejemplo de color de ojos y de pelo
+```{r }
+HairEyeColor
+
+prop.table(HairEyeColor, margin=3)*100.0
+#El 11%
+prop.table(HairEyeColor, margin=c(1,2))
+#De las personas con cabello negro y ojos marrones el 47% son hombres
+
+total = sum(HairEyeColor)
+```
+
+El total de individuos de la tabla es `r total`
+
+```{r }
+aperm(HairEyeColor, perm=c("Sex","Hair","Eye"))
+```
+
+
+```{r }
+library(kableExtra)
+kable(HairEyeColor)
+```
+
+## Ejemplo Final
+```{r }
+male <- HairEyeColor[, , "Male"]
+female <- HairEyeColor[, ,"Female"]
+data <- as.table(male+female)
+male
+female
+data
+
+```
+
+
+## Manipulacion de datos
+
+```{r}
+dimnames(data) = list(
+  Pelo = c("Negro","Marron", "Pelirrojo","Rubio"),
+  Ojos = c("Marrones","Azules","Pardos","Verdes")
+)
+data
+```
+
+## Diagrama de mosaico
+
+```{r}
+plot(data,main = "Diagrama de Mosaico variable pelo y color", col=c("lightblue"))
+```
+
+## Total de individuos
+
+```{r}
+totalIndividuos <- sum(data)
+```
+
+El total de individuos es `r totalIndividuos`
+
+
+## Frecuencias Absolutas y Relativas
+```{r}
+colSums(data)
+
+rowSums(data)
+
+round(prop.table(colSums(data)),2)
+
+round(prop.table(rowSums(data)),2)
+```
+
+
+```{r}
+par(mfrow=c(1,2))
+barplot(prop.table(colSums(data)),
+        main = "Frecuencias relativas del color de ojos",
+        col = c("Brown","Blue","Orange","Green"), 
+        names.arg = c("Marrones","Azules","Pardos","Verdes"),
+        ylim = c(0.0,0.4)
+        )
+
+barplot(prop.table(rowSums(data)),
+        main = "Frecuencias relativas del color de cabello",
+        col = c("Black","Brown","Red","Yellow"), 
+        names.arg = c("Negro","Marron","Rojo","Rubio"),
+        ylim = c(0.0,0.5)
+        )
+
+```
+
+
+## Frecuencia relativa absoluta y relativas marginales
+```{r}
+library(gmodels)
+round(prop.table(data),2)
+
+round(prop.table(data,margin = 1),3)
+round(prop.table(data, margin = 2),3)
+
+CrossTable(data,prop.chisq = FALSE)
+```
+
+
+## Graficos de Frecuencia
+
+```{r}
+barplot(prop.table(data,margin = 1),
+         main = "Frecuencias relativas de colores de cabello en cada color de ojos",
+         beside = TRUE,
+         col=c("Black","Brown","Red","Yellow"),
+         legend.text = TRUE,
+         ylim = c(0,0.8)
+         )
+
+
+barplot(t(prop.table(data,margin = 2)),
+         main = "Frecuencias relativas de colores de ojo en cada color de cabello",
+         beside = TRUE,
+         col=c("Brown","lightblue","orange","green"),
+         legend.text = TRUE,
+         ylim = c(0,0.6)
+         )
+```
+

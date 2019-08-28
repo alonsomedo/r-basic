@@ -1,0 +1,49 @@
+---
+title: "DataFrame_Cualitativa"
+author: "JAMD"
+date: "27 de agosto de 2019"
+output: html_document
+---
+
+```{r}
+bebEnergetica <- read.table("../data/EnergyDrink", header = TRUE)
+
+str(bebEnergetica)
+
+summary(bebEnergetica)
+
+apply(bebEnergetica,MARGIN=2,FUN = table)$sexo
+
+table(bebEnergetica)
+
+ftable(bebEnergetica)
+
+
+sexo <- c("H","M","M","M","H","H","H")
+respuestas <- c("NO","NO","SI","NO","SI","SI","SI")
+barplot(table(sexo), col=c("red","green"),main="Diagrama de barras de las frecuencias absolutas de la variable sexo",legend.text = c("Hombre","Mujer"))
+barplot(prop.table(table(respuestas)),col=c("blue","pink"),main="Diagrama de barras de las frecuencias relativas de la variable respuestas", xlab = "Respuesta", ylab = "0-1",horiz=TRUE)
+
+table(sexo,respuestas)
+
+barplot(table(sexo,respuestas), col=c("red","blue"),legend.text = c("Hombre","Mujer"))
+
+barplot(table(sexo,respuestas), col=c("red","blue"),legend.text = c("Hombre","Mujer"), beside = TRUE, names = c("Siuu","Nouu"))
+```
+
+
+```{r}
+x <- sample(c(1:5), size=12, replace = TRUE)
+pie(table(x), main="Grafico circular de la variable x")
+
+pie(table(respuestas))
+```
+
+
+
+```{r}
+plot(table(sexo,respuestas), main="Grafico de mosaico de las variables")
+
+plot(HairEyeColor, main="Grafico mosaico HairEyeColor", color=c("pink","lightblue"))
+```
+
