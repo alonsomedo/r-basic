@@ -1,0 +1,18 @@
+---
+title: "Cangrejos"
+author: "JAMD"
+date: "30 de agosto de 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+crabs = read.csv("../../data/datacrab.txt", header=TRUE)
+crabs = crabs[,-1] #Omitimos la primera columna
+head(crabs)
+str(crabs)
+```
+

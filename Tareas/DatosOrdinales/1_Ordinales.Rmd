@@ -1,0 +1,61 @@
+---
+title: "1_Ordinales"
+author: "JAMD"
+date: "30 de agosto de 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+notas = ordered(c("S","A","N","Ex","S","S","Ex","Ex","N","A","A","A","A","N","S"),
+                levels=c("S","A","N","Ex"))
+
+
+
+fAbs = table(notas)
+
+cumsum(fAbs) #Frecuencia absoluta acumulada
+
+cumsum(prop.table(fAbs)) #Frecuencia relativa acumulada
+
+barplot(fAbs , main = "Diagrama de Frecuencia Absoluta")
+
+```
+
+```{r}
+set.seed(2018)
+
+clientes = sample(1:5, 50, replace = TRUE)
+clientes
+
+```
+
+## Frecuencias Absoluta
+```{r}
+table(clientes)
+```
+
+## Frecuencias Relativa
+```{r}
+prop.table(table(clientes))
+```
+
+## Frecuencias Acumulada
+```{r}
+cumsum(table(clientes))
+```
+
+## Frecuencias Relativas Acumulada
+```{r}
+cumsum(prop.table(table(clientes)))
+```
+
+
+
+```{r}
+set.seed(NULL)
+```
+
